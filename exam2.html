@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IM441 Exam 2</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+  }
+  header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #34495e;
+  }
+  nav button {
+    flex: 1;
+    background-color: inherit;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  nav button:hover, nav button.active {
+    background-color: #1abc9c;
+  }
+  .tabcontent {
+    display: none;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+  h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 10px;
+  }
+  h3 {
+    color: #1abc9c;
+    margin-top: 25px;
+  }
+  .visual-card {
+    background: #fff;
+    border-left: 5px solid #2980b9;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    border-radius: 0 4px 4px 0;
+  }
+  .visual-card h4 {
+    margin-top: 0;
+    color: #2980b9;
+  }
+  .visual-card ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  table, th, td {
+    border: 1px solid #bdc3c7;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+    font-size: 0.95em;
+  }
+  th {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+  }
+  .interactive-box {
+    background: #e8f8f5;
+    border: 2px solid #1abc9c;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .interactive-box h4 {
+    margin-top: 0;
+    color: #117a65;
+  }
+  select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #1abc9c;
+    font-weight: bold;
+    color: #2c3e50;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .matching-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+  }
+  .match-item {
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  .btn-check {
+    margin-top: 15px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .btn-check:hover {
+    background-color: #16a085;
+  }
+  .feedback-msg {
+    margin-top: 10px;
+    font-weight: bold;
+    display: none;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  .quiz-q {
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .options label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+    padding: 8px;
+    background: #f4f7f6;
+    border-radius: 4px;
+    transition: 0.2s;
+  }
+  .options label:hover {
+    background: #e0e8e6;
+  }
+  textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>IM441 Exam 2</h1>
+  <p>Study Guides & Practice Tests</p>
+</header>
+
+<nav>
+  <button class="tablinks active" onclick="openTab(event, 'mod4')">Module 4: Guide</button>
+  <button class="tablinks" onclick="openTab(event, 'mod5')">Module 5: Guide</button>
+  <button class="tablinks" onclick="openTab(event, 'mod6')">Module 6: Guide</button>
+  <button class="tablinks" onclick="openTab(event, 'quiz4')">Module 4: Quiz</button>
+  <button class="tablinks" onclick="openTab(event, 'quiz5')">Module 5: Quiz</button>
+  <button class="tablinks" onclick="openTab(event, 'quiz6')">Module 6: Quiz</button>
+</nav>
+
+<div id="mod4" class="tabcontent" style="display:block;">
+  <h2>Module 4: Network Attacks</h2>
+  <p><strong>Goal:</strong> Recognize attacks on networks that target confidentiality, integrity, and availability, and identify attacks targeting wireless networks.</p>
+
+  <div class="visual-card">
+    <h4>1. What is a Computer Network?</h4>
+    <p>A network connects computers and devices to share resources using common protocols over digital media. The Internet is essentially "Inter-Networking" (connecting LANs via WANs).</p>
+    <ul>
+      <li><strong>Devices:</strong> Laptops, desktops, smartphones, printers, external storage, cameras, and game consoles.</li>
+      <li><strong>IP Addresses:</strong> Used for routing. 
+        <ul>
+          <li><em>Public IP:</em> Assigned by the ISP (e.g., 82.10.250.19).</li>
+          <li><em>Private IP:</em> Used internally within the LAN (e.g., 192.168.0.1 for the router).</li>
+        </ul>
+      </li>
+      <li><strong>MAC Addresses:</strong> Media Access Control addresses reside on network adapters for local hardware communication.</li>
+      <li><strong>Routers vs Switches:</strong> Routers forward data packets <em>between</em> different computer networks. Switches connect devices on a <em>single</em> network.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>2. Essential Protocols & Acronyms</h4>
+    <ul>
+      <li><strong>TCP/IP:</strong> Transmission Control Protocol / Internet Protocol.</li>
+      <li><strong>DNS:</strong> Domain Name System protocol (resolves names to IPs).</li>
+      <li><strong>SMTP:</strong> Simple Mail Transfer Protocol.</li>
+      <li><strong>ARP:</strong> Address Resolution Protocol (resolves IPs to MAC addresses).</li>
+      <li><strong>ICMP:</strong> Internet Control Message Protocol (used for ping/echo requests).</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>3. The 7 Layers of the OSI Model</h4>
+    <ul>
+      <li><strong>7. Application:</strong> Interfaces with user applications. Protocols: HTTP, SMTP, DNS.</li>
+      <li><strong>6. Presentation:</strong> Formats and encrypts data for applications.</li>
+      <li><strong>5. Session:</strong> Manages communication sessions between devices.</li>
+      <li><strong>4. Transport:</strong> Ensures reliable data transfer. Protocols: TCP, UDP.</li>
+      <li><strong>3. Network:</strong> Routes data across networks. Uses IP addressing. Device: Router.</li>
+      <li><strong>2. Data Link:</strong> Direct data transfer. Uses MAC addresses. Devices: Switches, WAPs.</li>
+      <li><strong>1. Physical:</strong> Hardware and transmission. Cables, cellular signals.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>4. Primary Attack Types & The CIA Triad</h4>
+    <ul>
+      <li><strong>Interception Attacks (Confidentiality/Integrity):</strong> MITM (Man-in-the-Middle), MITB (Man-in-the-Browser).</li>
+      <li><strong>Poisoning Attacks (Integrity):</strong> 
+        <ul>
+          <li><em>Layer 2:</em> ARP poisoning, MAC cloning, MAC flooding (floods switch).</li>
+          <li><em>Layer 7:</em> DNS poisoning and DNS hijacking (pharming).</li>
+        </ul>
+      </li>
+      <li><strong>DoS/DDoS Attacks (Availability):</strong>
+        <ul>
+          <li><em>Layer 3:</em> Smurf Attack (ICMP echo requests).</li>
+          <li><em>Layer 4:</em> SYN Flood Attack (TCP handshake).</li>
+          <li><em>Layer 7:</em> HTTP flood, Slowloris, Yo-Yo attacks.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>5. Wireless Attacks</h4>
+    <ul>
+      <li><strong>WPAN (Bluetooth/NFC/RFID):</strong> Bluejacking (spamming), Bluesnarfing (data theft). NFC eavesdropping. RFID unauthorized tag access.</li>
+      <li><strong>WLAN (Wi-Fi):</strong> Rogue Access Point (insider), Evil Twin (attacker).</li>
+      <li><strong>Wireless DoS:</strong> RF jamming, dissociation attacks.</li>
+    </ul>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Knowledge Check: Fill in the Blanks</h4>
+    <p>A <select id="m4-b1"><option value="">---</option><option value="public">Public</option><option value="private">Private</option></select> IP address is assigned by your ISP, while a <select id="m4-b2"><option value="">---</option><option value="public">Public</option><option value="private">Private</option></select> IP address (like 192.168.0.1) is used internally on your LAN.</p>
+    
+    <p>A DoS attack targeting Layer 3 using ICMP is called a <select id="m4-b3"><option value="">---</option><option value="smurf">Smurf Attack</option><option value="syn">SYN Flood</option></select>, whereas an attack targeting Layer 4 by exploiting the TCP handshake is a <select id="m4-b4"><option value="">---</option><option value="smurf">Smurf Attack</option><option value="syn">SYN Flood</option></select>.</p>
+
+    <button class="btn-check" onclick="checkBlanks('m4', ['public', 'private', 'smurf', 'syn'])">Check Answers</button>
+    <div id="m4-blank-fb" class="feedback-msg"></div>
+  </div>
+  <h3>Real-World Use Scenarios</h3>
+
+    <div class="visual-card">
+    <h4>Scenario 1: The Coffee Shop Decoy (Evil Twin & MITM)</h4>
+    <p>Sarah sits down at a local cafe and connects her laptop to "Cafe_Guest_Free". Unbeknownst to her, a hacker sitting in the corner has set up a malicious Wireless Access Point with that exact name. Because her Wi-Fi traffic now routes through the attacker's machine, they execute a Man-in-the-Middle (MITM) interception attack, capturing her unencrypted web traffic before forwarding it to the real internet.</p>
+    </div>
+
+    <div class="visual-card">
+    <h4>Scenario 2: Black Friday Blackout (SYN Flood)</h4>
+    <p>An e-commerce website is preparing for its biggest sale of the year. Suddenly, the web server stops responding to legitimate customers. An attacker is exploiting the Layer 4 TCP three-way handshake by sending thousands of SYN packets. The server responds with SYN-ACKs and waits for the final ACK that never comes, exhausting its memory and causing a devastating Availability failure.</p>
+    </div>
+
+    <div class="visual-card">
+    <h4>Scenario 3: The Insider Intercept (ARP Poisoning)</h4>
+    <p>An angry employee plugs a laptop directly into the corporate LAN. They run a script that broadcasts fake MAC addresses to the local switch, claiming that their laptop is the default gateway (router). The switch's MAC table is poisoned. Now, whenever a coworker tries to send a file to the internet, the Layer 2 traffic is silently redirected through the attacker's laptop first.</p>
+    </div>
+</div>
+
+<div id="mod5" class="tabcontent">
+  <h2>Module 5: Network Defenses</h2>
+  <p><strong>Goal:</strong> Learn the types of security appliances, secure access technologies, physical security measures, and wireless defense mechanisms.</p>
+
+  <div class="visual-card">
+    <h4>1. Firewall Foundations</h4>
+    <p>Firewalls utilize Access Control Lists (ACLs) to manage incoming and outgoing traffic based on the concept of <strong>Implicit Deny</strong>. They can operate at multiple OSI Layers: Layer 3 (Network/IP), Layer 4 (Transport/Ports), or Layer 7 (Applications).</p>
+    <p><strong>Components of a rule-based firewall rule:</strong></p>
+    <ul>
+      <li>Source / Destination IP</li>
+      <li>Port & Protocol</li>
+      <li>Permission</li>
+      <li>Time & Context</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>2. Types of Firewalls</h4>
+    <ul>
+      <li><strong>Stateless Firewalls:</strong> Fast and efficient, but do not track active sessions. Example: <em>Router ACLs</em>.</li>
+      <li><strong>Stateful Firewalls:</strong> Highly effective at stopping complex threats (like SYN floods) because they track the state of active connections for legitimate sessions (e.g., outbound/inbound HTTP). Example: <em>Windows Defender Firewall</em>.</li>
+      <li><strong>Hardware vs. Software:</strong> Hardware firewalls are dedicated physical devices (e.g., Cisco firewalls connected directly to a router). Software firewalls run as services on existing endpoints.</li>
+      <li><strong>WAF (Web Application Firewall):</strong> Operates strictly at Layer 7 to protect against common web exploits. Example: <em>Amazon WAF</em>.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>3. IDPS & Network Adjustments</h4>
+    <ul>
+      <li><strong>IDPS:</strong> Intrusion Detection and Prevention Systems provide deeper packet inspection and behavioral analysis than standard firewalls. This allows them to detect and block sophisticated attacks. An IPS is essentially a <em>Next-Generation Firewall (NGFW)</em>.</li>
+      <li><strong>Network Adjustments & Defenses:</strong>
+        <ul>
+          <li><em>Load Balancing:</em> Scaling resources to handle traffic loads safely.</li>
+          <li><em>Rate Limiting:</em> Controlling properties like TCP/IP connections and maximum bandwidth.</li>
+          <li><em>Blackholing:</em> Dropping malicious traffic quietly without alerting the sender.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>4. Deception Technologies</h4>
+    <p>Deception technologies act as "bait" for threat actors.</p>
+    <ul>
+      <li><strong>Honeypots:</strong> Decoy systems (like decoy databases, email traps, spider honeypots, malware honeypots). They are used for:
+        <ul>
+          <li>Neutralizing an attacker's active reconnaissance.</li>
+          <li>Learning the attacker's methods.</li>
+          <li>Distracting the attacker from main networks by providing an "illusion of hacking success."</li>
+        </ul>
+      </li>
+      <li><strong>Honeynet:</strong> A coordinated network of multiple honeypots.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>5. Secure Access: Proxy Servers & VPNs</h4>
+    <ul>
+      <li><strong>Proxy Server:</strong> Sits directly between endpoints. It hides endpoint IP addresses, providing Confidentiality (but it does NOT guarantee Integrity). Can be manual or auto-detected via DNS/DHCP. Example: <em>EZproxy for the UT Library</em>.</li>
+      <li><strong>VPN (Virtual Private Network):</strong> Creates an encrypted tunnel over a public network. Provides both Confidentiality and Integrity, mitigating MITM attacks.
+        <ul>
+          <li><em>Remote Access VPN:</em> Like <em>Pulse Secure</em>, used for individual users.</li>
+          <li><em>Site-to-Site VPN:</em> Connects entire networks, mainly used to protect an extranet.</li>
+          <li>Can use full or split tunnelling.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>6. NAC, DLP, and Secure Network Design</h4>
+    <ul>
+      <li><strong>NAC (Network Access Control):</strong> Examines the current state of a device before it can connect. Uses permanent or dissolvable agents. Can be embedded in Windows Active Directory (AD).</li>
+      <li><strong>DLP (Data Loss Prevention):</strong> Utilizes a server and rules. DLP actions include: <em>Block, Redirect, Quarantine, and Alert</em>.</li>
+      <li><strong>Network Segmentation:</strong> 
+        <ul>
+          <li><em>VLANs:</em> Logical grouping to isolate networks (Note: VLAN segmentation failed during the Target data breach).</li>
+          <li><em>DMZ (Demilitarized Zone):</em> A perimeter network that is external-facing to host public servers securely.</li>
+          <li><em>Air-Gapping:</em> True, complete physical isolation of a system.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>7. Securing Wi-Fi & Physical Controls</h4>
+    <ul>
+      <li><strong>Wi-Fi Security:</strong>
+        <ul>
+          <li><em>WEP:</em> Old protocol using RC4. Can cause a "detectable pattern" for attackers.</li>
+          <li><em>WPA:</em> Uses TKIP and MICs (Message Integrity Checks).</li>
+          <li><em>WPA Personal vs Enterprise:</em> Personal uses a pre-shared key (home routers). Enterprise uses a RADIUS server (e.g., Edu Roam).</li>
+          <li><em>WPA2 & WPA3:</em> WPA2 uses AES. WPA3 uses AES with longer keys and features forward secrecy.</li>
+        </ul>
+      </li>
+      <li><strong>Physical Controls:</strong>
+        <ul>
+          <li><em>External:</em> Barriers, security personnel, sensors.</li>
+          <li><em>Internal:</em> Mantrap, locks, secure areas, protected cables, fire suppression.</li>
+          <li><em>Hardware:</em> Cable locks, Faraday cages (blocks electromagnetic fields).</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>8. Lab 5 Terminologies: Securing Enterprise Infrastructures</h4>
+    <p><em>Lab Reference: Live Virtual Machine Lab 9-2</em></p>
+    <ul>
+      <li><strong>Core Concepts:</strong> VPN Server, VPN Client, DHCP pool, Port forwarding.</li>
+      <li><strong>Windows Server Manager:</strong> Specifically the "Routing and Remote Access" role.</li>
+      <li><strong>RasClient:</strong> Remote Access Service Client (viewed in Event Viewers).</li>
+      <li><strong>Exercise 1 (VPN Server):</strong> Add Remote Access role to Windows Server (<em>ACIDM</em>), enable VPN, add DHCP pool, configure firewall, open Event Viewers for RasClient.</li>
+      <li><strong>Exercise 2 (VPN User):</strong> Add VPN user on <em>ACIDC</em>. Change properties: Join the "Remote Desktop Users" group and allow Dial-in. Add VPN connection on <em>ACIWIN</em>. Username used: <code>Secplus@aciplab.com</code>. Finally, verify new IP from <em>ACIKALI</em>.</li>
+    </ul>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Knowledge Check: Fill in the Blanks</h4>
+    <p>A <select id="m5-b1"><option value="">---</option><option value="stateless">Stateless</option><option value="stateful">Stateful</option></select> firewall (like a Router ACL) is efficient but doesn't track active sessions. A <select id="m5-b2"><option value="">---</option><option value="stateless">Stateless</option><option value="stateful">Stateful</option></select> firewall tracks ongoing connections, effectively stopping SYN floods.</p>
+    <p>To examine a device's state before granting network access, you use <select id="m5-b3"><option value="">---</option><option value="dlp">DLP</option><option value="nac">NAC</option></select>. If you want to prevent data exfiltration by blocking or quarantining files, you use <select id="m5-b4"><option value="">---</option><option value="dlp">DLP</option><option value="nac">NAC</option></select>.</p>
+    <button class="btn-check" onclick="checkBlanks('m5', ['stateless', 'stateful', 'nac', 'dlp'])">Check Answers</button>
+    <div id="m5-blank-fb" class="feedback-msg"></div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Knowledge Check: Defense Matching</h4>
+    <div class="matching-grid">
+      <div class="match-item">Uses a RADIUS server (e.g. Edu Roam)</div>
+      <div><select id="m5-m1"><option value="">Select Term...</option><option value="wpa-ent">WPA Enterprise</option><option value="wpa-per">WPA Personal</option><option value="faraday">Faraday Cage</option></select></div>
+      
+      <div class="match-item">Blocks electromagnetic fields to secure hardware</div>
+      <div><select id="m5-m2"><option value="">Select Term...</option><option value="wpa-ent">WPA Enterprise</option><option value="wpa-per">WPA Personal</option><option value="faraday">Faraday Cage</option></select></div>
+
+      <div class="match-item">Uses a pre-shared key (e.g. Home Router)</div>
+      <div><select id="m5-m3"><option value="">Select Term...</option><option value="wpa-ent">WPA Enterprise</option><option value="wpa-per">WPA Personal</option><option value="faraday">Faraday Cage</option></select></div>
+    </div>
+    <button class="btn-check" onclick="checkMatching('m5', ['wpa-ent', 'faraday', 'wpa-per'])">Verify Matches</button>
+    <div id="m5-match-fb" class="feedback-msg"></div>
+  </div>
+  <h3>Real-World Use Scenarios</h3>
+
+    <div class="visual-card">
+    <h4>Scenario 1: Safe Travels (Remote Access VPN)</h4>
+    <p>David is an HR executive traveling abroad for a conference. He needs to approve payroll from his hotel room, but the hotel Wi-Fi is unsecure. He opens his Pulse Secure client and connects to the company's Remote Access VPN. This creates an encrypted tunnel over the public network, ensuring that even if someone is eavesdropping on the hotel network, they only see scrambled ciphertext.</p>
+    </div>
+
+    <div class="visual-card">
+    <h4>Scenario 2: The Decoy Database (Honeypot)</h4>
+    <p>A threat actor breaches the outer perimeter of a corporate network and begins scanning for vulnerable databases. They find a server labeled "Customer_Financials_Backup" and successfully extract the tables. However, the security team is immediately alerted. The server was actually a Honeypot filled with fake data, designed to distract the attacker and waste their time while the security team locks down the real production database.</p>
+    </div>
+
+    <div class="visual-card">
+    <h4>Scenario 3: Stopping the Web Exploit (WAF & Stateful Firewall)</h4>
+    <p>A hacker attempts to breach a university's web server by injecting a malicious SQL command into the login page. The standard Layer 3 router allows the traffic because it operates on port 443 (HTTPS). However, the Web Application Firewall (WAF) operating at Layer 7 inspects the actual application payload, recognizes the SQL injection signature, and drops the traffic instantly.</p>
+    </div>
+</div>
+
+<div id="mod6" class="tabcontent">
+  <h2>Module 6: Cryptography</h2>
+  <p><strong>Goal:</strong> Understand cryptographic algorithms, digital certificates, PKI, and secure communication protocols.</p>
+
+  <div class="visual-card">
+    <h4>1. Core Cryptographic Concepts</h4>
+    <p>Cryptography transforms plaintext into ciphertext to provide confidentiality, integrity, authentication, and non-repudiation.</p>
+    <ul>
+      <li><strong>Hashing:</strong> One-way algorithm generating a fixed-length digest (a digital fingerprint). Verifies Integrity. Algorithms: MD5, SHA, RIPEMD.</li>
+      <li><strong>Symmetric Encryption:</strong> Uses a single, identical shared key (Private Key). Fast, but key distribution is challenging. Algorithms: DES, 3DES, AES.</li>
+      <li><strong>Asymmetric Encryption:</strong> Uses mathematically related Public and Private keys. Slower but secure. The Public key encrypts, while the Private key decrypts.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>2. Asymmetric Algorithms & Key Exchange</h4>
+    <ul>
+      <li><strong>RSA:</strong> Very secure (e.g., 2048-bit keys) but slow. Often used in conjunction with symmetric cryptography.</li>
+      <li><strong>ECC (Elliptic Curve Cryptography):</strong> Equally secure as RSA but requires less computing power. Commonly used by university websites.</li>
+      <li><strong>Diffie-Hellman (DH):</strong> Solves the "key exchange problem" by allowing two parties to securely establish a shared symmetric key over an unsecure channel (e.g., DHE, ECDH).</li>
+      <li><strong>Perfect Forward Secrecy (PFS):</strong> Changes session keys frequently and automatically to protect past sessions against future compromises.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>3. Digital Signatures & Certificates</h4>
+    <ul>
+      <li><strong>Digital Signatures:</strong> The sender hashes the message, then encrypts the digest with their <em>Private Key</em>. This verifies message integrity and ensures non-repudiation.</li>
+      <li><strong>Digital Certificates:</strong> Proves ownership of a public key. Issued by Certificate Authorities (CAs).
+        <ul>
+          <li><em>Domain Validation (DV):</em> Verifies the identity of a web domain.</li>
+          <li><em>Extended Validation (EV):</em> Shows the company's name in the browser.</li>
+          <li><em>Wildcards:</em> Authenticates multiple subdomains.</li>
+        </ul>
+      </li>
+      <li><strong>PKI (Public Key Infrastructure):</strong> The framework that manages certificates using trust models (Hierarchical, Distributed, Bridged) and components like Active Directory Certificate Services (AD CS).</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>4. Secure Protocols & HTTPS</h4>
+    <ul>
+      <li><strong>HTTPS Handshake:</strong> Uses SSL/TLS. It combines both cryptographic methods: it uses <em>Asymmetric Encryption</em> initially to securely exchange a session key, then switches to faster <em>Symmetric Encryption</em> for the rest of the web session.</li>
+      <li><strong>Other Protocols:</strong> 
+        <ul>
+          <li><em>SSH:</em> Secure Shell for remote access.</li>
+          <li><em>IPsec:</em> Network security working at Layer 3.</li>
+          <li><em>SRTP:</em> Secure Real-Time Transport Protocol (for VoIP).</li>
+          <li><em>S/MIME:</em> Secure email extensions.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>5. Attacks, Steganography, & Hardware</h4>
+    <ul>
+      <li><strong>Cryptographic Attacks:</strong>
+        <ul>
+          <li><em>Collision Attack:</em> Attempting to find two different inputs that produce the exact same hash digest.</li>
+          <li><em>Downgrade Attack:</em> Intentionally forcing two parties to negotiate weaker security parameters than they both support.</li>
+          <li><em>Side-Channel Attack:</em> Analyzing physical metrics (like power consumption) to recover key bytes.</li>
+        </ul>
+      </li>
+      <li><strong>Steganography:</strong> Hiding the existence of data within images, audio, or video (e.g., digital watermarking).</li>
+      <li><strong>Hardware Encryption:</strong> HSM (Hardware Security Module) is used mainly for networks. TPM (Trusted Platform Module) is used mainly for endpoints.</li>
+    </ul>
+  </div>
+
+  <div class="visual-card">
+    <h4>6. Lab 6 Terminologies</h4>
+    <p><em>Lab Reference: Live Virtual Machine Lab 3-1: Data Protection Strategies</em></p>
+    <ul>
+      <li><strong>EFS:</strong> Encrypting File System.</li>
+      <li><strong>cipher:</strong> The encryption command used in Windows.</li>
+      <li><strong>certutil -hashfile:</strong> The hashing command used in Windows.</li>
+      <li><strong>md5sum:</strong> The hashing command used in Linux.</li>
+    </ul>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Knowledge Check: Fill in the Blanks</h4>
+    <p>Saving user passwords requires <select id="m6-b1"><option value="">---</option><option value="hash">Hashing</option><option value="sym">Symmetric</option></select>. Attempting to find two different passwords with the exact same digest is known as a <select id="m6-b2"><option value="">---</option><option value="mitm">MITM Attack</option><option value="collision">Collision Attack</option></select>.</p>
+    
+    <p>During an HTTPS connection, the browser initially uses <select id="m6-b3"><option value="">---</option><option value="asym">Asymmetric</option><option value="sym">Symmetric</option></select> encryption to safely exchange keys, and then shifts to <select id="m6-b4"><option value="">---</option><option value="asym">Asymmetric</option><option value="sym">Symmetric</option></select> encryption for the actual session data.</p>
+
+    <button class="btn-check" onclick="checkBlanks('m6', ['hash', 'collision', 'asym', 'sym'])">Check Answers</button>
+    <div id="m6-blank-fb" class="feedback-msg"></div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Knowledge Check: Cryptography Matching</h4>
+    <div class="matching-grid">
+      <div class="match-item">Requires less computing power; used by universities</div>
+      <div><select id="m6-m1"><option value="">Select Algorithm...</option><option value="rsa">RSA</option><option value="ecc">ECC</option><option value="dh">Diffie-Hellman</option></select></div>
+      
+      <div class="match-item">Solves the key exchange problem over unsecure channels</div>
+      <div><select id="m6-m2"><option value="">Select Algorithm...</option><option value="rsa">RSA</option><option value="ecc">ECC</option><option value="dh">Diffie-Hellman</option></select></div>
+
+      <div class="match-item">Very secure but slow; typically 2048-bit</div>
+      <div><select id="m6-m3"><option value="">Select Algorithm...</option><option value="rsa">RSA</option><option value="ecc">ECC</option><option value="dh">Diffie-Hellman</option></select></div>
+    </div>
+    <button class="btn-check" onclick="checkMatching('m6', ['ecc', 'dh', 'rsa'])">Verify Matches</button>
+    <div id="m6-match-fb" class="feedback-msg"></div>
+  </div>
+  <h3>Real-World Use Scenarios</h3>
+
+    <div class="visual-card">
+    <h4>Scenario 1: The Undeniable Transfer (Digital Signatures)</h4>
+    <p>The CEO of a bank sends an email authorizing a $10 million wire transfer. To prove she sent it, her email client hashes the message and encrypts the digest with her Private Key. When the CFO receives the email, their client decrypts the signature using the CEO's Public Key. Because it decrypts successfully, the CFO has cryptographic proof of Non-repudiation—the CEO cannot deny sending the email.</p>
+    </div>
+
+    <div class="visual-card">
+    <h4>Scenario 2: Verifying the Update (Hashing)</h4>
+    <p>A system administrator downloads a massive 5GB firmware update for the company's core routers. Before installing it, they want to ensure the file wasn't corrupted or injected with malware during the download. They run an MD5 hash command on the downloaded file and compare the resulting digest to the hash published on the vendor's website. The hashes match perfectly, verifying the file's Integrity.</p>
+    </div>
+
+    <div class="visual-card">
+    <h4>Scenario 3: The Secure Checkout (HTTPS Handshake)</h4>
+    <p>You type your credit card into an online store. Your browser and the web server initially use Asymmetric encryption (RSA or ECC) to securely exchange a temporary secret key over the open internet. Once both sides have the secret key, they seamlessly switch to Symmetric encryption (like AES) for the rest of the checkout process, because symmetric encryption is much faster for encrypting the actual session data.</p>
+    </div>
+    </div>
+
+    <div id="quiz4" class="tabcontent">
+    <h2>Module 4 Practice Questions</h2>
+    <div id="q-container-4"></div>
+</div>
+
+<div id="quiz5" class="tabcontent">
+  <h2>Module 5 Practice Questions</h2>
+  <div id="q-container-5"></div>
+</div>
+
+<div id="quiz6" class="tabcontent">
+  <h2>Module 6 Practice Questions</h2>
+  <div id="q-container-6"></div>
+</div>
+
+<script>
+// Tab Navigation
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Interactive Verification Logic
+function checkBlanks(modPrefix, answers) {
+  let allCorrect = true;
+  for(let i=0; i<answers.length; i++) {
+    let el = document.getElementById(modPrefix + '-b' + (i+1));
+    if(!el) continue;
+    if(el.value !== answers[i]) {
+      allCorrect = false;
+      el.style.borderColor = '#e74c3c';
+    } else {
+      el.style.borderColor = '#27ae60';
+    }
+  }
+  let fb = document.getElementById(modPrefix + '-blank-fb');
+  fb.style.display = 'block';
+  if(allCorrect) {
+    fb.innerHTML = 'Correct!';
+    fb.style.color = '#27ae60';
+    fb.style.backgroundColor = '#eaeded';
+  } else {
+    fb.innerHTML = 'Incorrect. Try again.';
+    fb.style.color = '#e74c3c';
+    fb.style.backgroundColor = '#fadbd8';
+  }
+}
+
+function checkMatching(modPrefix, answers) {
+  let allCorrect = true;
+  for(let i=0; i<answers.length; i++) {
+    let el = document.getElementById(modPrefix + '-m' + (i+1));
+    if(!el) continue;
+    if(el.value !== answers[i]) {
+      allCorrect = false;
+      el.style.borderColor = '#e74c3c';
+    } else {
+      el.style.borderColor = '#27ae60';
+    }
+  }
+  let fb = document.getElementById(modPrefix + '-match-fb');
+  fb.style.display = 'block';
+  if(allCorrect) {
+    fb.innerHTML = 'Correct matches!';
+    fb.style.color = '#27ae60';
+    fb.style.backgroundColor = '#eaeded';
+  } else {
+    fb.innerHTML = 'Incorrect matches. Check highlighted boxes.';
+    fb.style.color = '#e74c3c';
+    fb.style.backgroundColor = '#fadbd8';
+  }
+}
+
+// Module 4 Data (Full 28)
+const mcq4 = [
+  ["What is a computer network primarily used for?", "Sharing resources", "Increasing processing speed", "Cooling hardware", "Creating graphical interfaces"],
+  ["Which OSI layer interfaces with user applications like HTTP and SMTP?", "Layer 7 (Application)", "Layer 5 (Session)", "Layer 3 (Network)", "Layer 1 (Physical)"],
+  ["Which layer of the OSI model formats and encrypts data?", "Layer 6 (Presentation)", "Layer 4 (Transport)", "Layer 2 (Data Link)", "Layer 7 (Application)"],
+  ["Which OSI layer ensures reliable data transfer using TCP and UDP?", "Layer 4 (Transport)", "Layer 3 (Network)", "Layer 5 (Session)", "Layer 2 (Data Link)"],
+  ["What does a router do?", "Forwards data packets between computer networks", "Provides Bluetooth access", "Floods MAC addresses", "Encrypts local hard drives"],
+  ["At which OSI layer do MAC addresses and switches operate?", "Layer 2 (Data Link)", "Layer 3 (Network)", "Layer 4 (Transport)", "Layer 1 (Physical)"],
+  ["Cables, cellular signals, and optical fibers belong to which OSI layer?", "Layer 1 (Physical)", "Layer 2 (Data Link)", "Layer 3 (Network)", "Layer 7 (Application)"],
+  ["What is the primary target of an interception attack like MITM?", "Confidentiality", "Integrity", "Availability", "Authentication"],
+  ["Poisoning attacks primarily target which part of the CIA triad?", "Integrity", "Availability", "Confidentiality", "Non-repudiation"],
+  ["Which of the following is a Layer 2 attack?", "MAC flooding attack", "Smurf Attack", "SYN Flood Attack", "HTTP flood"],
+  ["What type of attack involves flooding the switch?", "MAC flooding attack", "DNS poisoning", "Smurf Attack", "RF jamming"],
+  ["DNS poisoning and hijacking are attacks on which OSI layer?", "Layer 7", "Layer 2", "Layer 3", "Layer 4"],
+  ["DoS and DDoS attacks mainly target what?", "Availability", "Confidentiality", "Integrity", "Hardware"],
+  ["A Smurf Attack operates on which layer and protocol?", "Layer 3 on ICMP", "Layer 4 on TCP", "Layer 2 on ARP", "Layer 7 on HTTP"],
+  ["Which attack exploits the TCP three-way handshake?", "SYN Flood Attack", "Smurf Attack", "Slowloris", "MAC cloning"],
+  ["What Application-Layer DDoS attack uses partial headers to keep a server waiting?", "Slowloris", "Yo-Yo attack", "Smurf Attack", "SYN Flood"],
+  ["Which of the following is considered a Cloud-based DDoS attack?", "Yo-Yo attack", "MAC flooding", "ARP spoofing", "Bluejacking"],
+  ["Bluejacking and Bluesnarfing are attacks on which type of network?", "WPAN", "WLAN", "WAN", "LAN"],
+  ["Eavesdropping and unauthorized tag access are vulnerabilities of what technology?", "RFID", "WLAN", "Ethernet", "WAN"],
+  ["Who typically sets up a Rogue access point on a WLAN?", "Insiders", "External attackers", "ISPs", "Network Administrators"],
+  ["Who sets up an Evil Twin on a WLAN?", "Attacker", "Insider", "Router", "Switch"],
+  ["RF jamming is an example of what type of attack?", "Wireless DoS", "Wired interception", "Layer 7 Poisoning", "NFC data theft"],
+  ["What kind of device routes traffic and provides Wi-Fi?", "Wi-Fi Router", "Wireless Access Point", "Unmanaged Switch", "Hub"],
+  ["What layers does a Wi-Fi Router operate on?", "Layer 2 + Layer 3", "Layer 1 + Layer 2", "Layer 4 + Layer 5", "Layer 7 only"],
+  ["Does a standard Wireless Access Point (WAP) include routing?", "No (Layer 2 only)", "Yes (Layer 3)", "Yes (Layer 7)", "Depends on the hotspot"],
+  ["Which device is typically used in enterprises and large buildings to extend coverage?", "Wireless Access Point (WAP)", "Home Wi-Fi Router", "Personal Hotspot", "Bluetooth Dongle"],
+  ["What script is mentioned in Lab 4 for observing a Brute force attack?", "brute.sh", "msfconsole", "syn_flood.py", "smb_attack.exe"],
+  ["Which tool in Lab 4 requires sudo privilege to perform a SYN flood attack?", "msfconsole", "brute.sh", "SMB event log", "Wireshark"]
+];
+const sa4 = [
+  ["What is the fundamental difference between a Wi-Fi Router and a Wireless Access Point (WAP)?", "A Wi-Fi Router routes traffic and provides Wi-Fi (Layer 2 and 3). A WAP only creates Wi-Fi on an existing network (Layer 2)."],
+  ["Explain how Interception attacks differ from DoS attacks.", "Interception attacks target Confidentiality (eavesdropping). DoS attacks target Availability (overwhelming resources)."]
+];
+
+// Module 5 Data (28 unique questions)
+const mcq5 = [
+  ["Which firewall operates at Layer 7?", "WAF", "Stateless", "Packet Filter", "Router ACL"],
+  ["What feature characterizes a stateful firewall?", "Tracks active connections", "Filters only by IP", "Operates exclusively at Layer 2", "Is always a hardware device"],
+  ["What is the principle of 'Implicit Deny'?", "Traffic blocked unless explicitly allowed", "Traffic allowed unless blocked", "All inbound accepted", "All outbound accepted"],
+  ["Which technology serves primarily as 'bait'?", "Honeypot", "Proxy Server", "VPN", "Load Balancer"],
+  ["What does a Proxy Server hide?", "Internal IP addresses", "MAC addresses", "Encryption keys", "CAs"],
+  ["What is a primary function of a VPN?", "Creates an encrypted tunnel", "Filters Layer 7", "Distributes traffic", "Translates IPs"],
+  ["What does DLP stand for?", "Data Loss Prevention", "Data Link Protocol", "Digital Ledger Protection", "Dynamic Load Pooling"],
+  ["What differentiates an IDPS from a firewall filter?", "Behavioral analysis", "No power needed", "Only looks at headers", "Cannot block traffic"],
+  ["Which firewall type is fast but rigid?", "Stateless", "Stateful", "NGFW", "WAF"],
+  ["Which is an example of a stateful firewall?", "Windows Defender", "Router ACL", "Hub", "Unmanaged Switch"],
+  ["Which is an example of a stateless firewall?", "Router ACL", "Windows Defender", "Cisco NGFW", "Amazon WAF"],
+  ["What is a DMZ used for?", "Isolating public-facing servers", "Storing backups", "Hosting honeypots only", "Managing passwords"],
+  ["What attack does a VPN mitigate over public Wi-Fi?", "MITM attacks", "DDoS attacks", "MAC Flooding", "Smurf attacks"],
+  ["What is the purpose of Network Access Control (NAC)?", "Enforces security policies before access", "Creates VPNs", "Decrypts SSL", "Acts as Honeynet"],
+  ["What defines rules for firewall traffic?", "Access Control List (ACL)", "Digital Certificate", "Hash Digest", "MAC Table"],
+  ["Which is a deceptive technology?", "Honeynet", "VLAN", "WPA3", "Load Balancer"],
+  ["What does an IDS do?", "Monitors activity but doesn't block", "Actively drops attacks", "Hardware firewall", "VPN client"],
+  ["How does an IPS differ from an IDS?", "IPS actively blocks", "IPS only logs data", "IPS cannot read packets", "IPS is for wireless only"],
+  ["What is an NGFW?", "An IPS with deep firewall capabilities", "Stateless router", "Honeypot", "Basic WAF"],
+  ["What does rate limiting achieve?", "Controls connection rates", "Stops encrypted traffic", "Assigns IPs", "Limits physical access"],
+  ["What is 'blackholing'?", "Silently dropping malicious traffic", "Sending to a honeypot", "Encrypting drives", "Load balancing"],
+  ["What does load balancing do?", "Distributes incoming traffic", "Encrypts VPN data", "Filters MACs", "Hosts DNS"],
+  ["Which is a standard component of a firewall rule?", "Port number", "User location", "Drive size", "CPU temp"],
+  ["Amazon WAF is an example of what?", "Web Application Firewall", "Hardware Firewall", "Stateless Router", "Proxy Server"],
+  ["What technology provides secure remote access?", "VPN", "VLAN", "WEP", "NAT"],
+  ["Providing an 'illusion of hacking success' is associated with what?", "Honeypot", "IPS", "WAF", "ACL"],
+  ["Which protocol is associated with web exploits that a WAF defends against?", "HTTP", "ICMP", "ARP", "DHCP"],
+  ["What is network segmentation used for?", "Isolating network sections", "Speeding up Wi-Fi", "Creating fake MACs", "Bypassing firewalls"]
+];
+const sa5 = [
+  ["What is the difference between a stateless and a stateful firewall?", "Stateless filters individual packets based on static rules. Stateful tracks the entire session's state."],
+  ["Describe the primary purpose of a honeypot.", "It acts as decoy 'bait' to distract attackers and study their methods."]
+];
+
+// Module 6 Data (28 unique questions)
+const mcq6 = [
+  ["What transforms plaintext into ciphertext?", "Cryptography", "Steganography", "Hashing", "NAT"],
+  ["Which algorithm produces a fixed-length digest?", "Hashing", "Asymmetric", "Symmetric", "Steganography"],
+  ["What vulnerability occurs when two inputs produce the same hash?", "Collision attack", "Downgrade attack", "Smurf attack", "Replay attack"],
+  ["Which cryptography uses the identical key for encryption and decryption?", "Symmetric", "Asymmetric", "Public Key", "Hashing"],
+  ["Which is an asymmetric algorithm?", "RSA", "DES", "3DES", "AES"],
+  ["What is a digital signature used for?", "Non-repudiation", "Hiding data", "Encrypting drives", "Exchanging keys"],
+  ["What proves ownership of a public key?", "Digital Certificate", "Encrypted password", "Firewall rule", "IP translation"],
+  ["What manages digital certificates?", "PKI", "Private Key Interface", "Protected Key Integration", "Public Knowledge Index"],
+  ["Which protocol is utilized for HTTPS?", "SSL/TLS", "SSH", "IPsec", "SRTP"],
+  ["What hides data within images/audio?", "Steganography", "Encryption", "Hashing", "Distribution"],
+  ["Which is a symmetric block cipher?", "AES", "RSA", "ECC", "MD5"],
+  ["Which hashing algorithm is highly vulnerable to collisions?", "MD5", "SHA3", "RSA", "AES"],
+  ["Which is a characteristic of Asymmetric Cryptography?", "Uses a Public/Private key pair", "Uses one shared key", "Zero overhead", "Only hashes"],
+  ["Who issues digital certificates?", "Certificate Authority (CA)", "Proxy Server", "ISP", "WAF"],
+  ["What is ROT13?", "Simple substitution cipher", "Asymmetric algorithm", "Next-gen firewall", "Hashing digest"],
+  ["What is an example of a stream cipher?", "RC4", "AES", "3DES", "RSA"],
+  ["What forces negotiation of weaker security parameters?", "Downgrade Attack", "Collision Attack", "Side-Channel Attack", "Smurf Attack"],
+  ["What hardware component is used for endpoint encryption?", "TPM", "HSM", "NIC", "WAF"],
+  ["Which protocol is for secure remote shell access?", "SSH", "S/MIME", "IPsec", "HTTP"],
+  ["What adds diffusion to block ciphers?", "CBC", "Public keys", "Hashing speed", "Firewalls"],
+  ["What is an EV digital certificate?", "Extended Validation", "Encrypted Validation", "Enterprise Volume", "Ephemeral Vector"],
+  ["Which asymmetric algorithm uses elliptic curves?", "ECC", "AES", "DES", "MD5"],
+  ["What establishes a shared symmetric key over an unsecure channel?", "Diffie-Hellman", "Hashing", "Watermarking", "Encryption"],
+  ["What changes session keys frequently?", "Perfect Forward Secrecy", "MAC cloning", "DDoS blocks", "Validation"],
+  ["What lists revoked digital certificates?", "CRL", "Blocked IPs", "Hashed passwords", "Honeypot network"],
+  ["What authenticates multiple subdomains?", "Wildcard", "DV", "EV", "Single-use"],
+  ["How does a receiver verify a digital signature?", "Decrypting the digest with the sender's public key", "Decrypting with private key", "Hashing the public key", "Encrypting symmetrically"],
+  ["What is an example of Steganography?", "Digital watermarking", "HTTPS", "Diffie-Hellman", "RSA"]
+];
+const sa6 = [
+  ["Explain the difference between symmetric and asymmetric cryptography.", "Symmetric uses one shared key. Asymmetric uses a mathematically related public and private key pair."],
+  ["How does a digital signature ensure non-repudiation?", "It is encrypted with the sender's private key. If the public key decrypts it, only the sender could have signed it."]
+];
+
+// Quiz Renderer
+function renderQuiz(containerId, mcqs, sas) {
+  const container = document.getElementById(containerId);
+  let html = '';
+  
+  mcqs.forEach((q, index) => {
+    let opts = [q[1], q[2], q[3], q[4]];
+    opts.sort(() => Math.random() - 0.5);
+    html += `
+      <div class="quiz-q" id="${containerId}-q${index}">
+        <h4>Question ${index+1}: ${q[0]}</h4>
+        <div class="options">
+          ${opts.map(o => `<label><input type="radio" name="${containerId}-q${index}" value="${o.replace(/"/g, '&quot;')}"> ${o}</label>`).join('')}
+        </div>
+        <button class="btn-check" onclick="checkMCQ('${containerId}-q${index}', '${q[1].replace(/'/g, "\\'")}')">Submit Answer</button>
+        <div class="feedback-msg" id="fb-${containerId}-q${index}"></div>
+      </div>
+    `;
+  });
+
+  html += `<h3>Short Answer Section</h3>`;
+  sas.forEach((sa, index) => {
+    html += `
+      <div class="quiz-q">
+        <h4>Short Answer ${index+1}: ${sa[0]}</h4>
+        <textarea placeholder="Type response..."></textarea>
+        <br>
+        <button class="btn-check" onclick="this.nextElementSibling.style.display='block'">Reveal Answer</button>
+        <div class="feedback-msg" style="background:#e8f8f5; color:#117a65;"><b>Model Answer:</b> ${sa[1]}</div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+function checkMCQ(qId, correct) {
+  const radios = document.getElementsByName(qId);
+  let selected = '';
+  radios.forEach(r => { if(r.checked) selected = r.value; });
+  const fb = document.getElementById('fb-' + qId);
+  fb.style.display = 'block';
+  if(!selected) {
+    fb.innerHTML = 'Select an answer.';
+    fb.style.color = '#d35400';
+    fb.style.backgroundColor = '#fdebd0';
+  } else if(selected === correct) {
+    fb.innerHTML = 'Correct!';
+    fb.style.color = '#27ae60';
+    fb.style.backgroundColor = '#eaeded';
+  } else {
+    fb.innerHTML = 'Incorrect. Answer: ' + correct;
+    fb.style.color = '#e74c3c';
+    fb.style.backgroundColor = '#fadbd8';
+  }
+}
+
+// Init Quizzes
+window.onload = function() {
+  renderQuiz('q-container-4', mcq4, sa4);
+  renderQuiz('q-container-5', mcq5, sa5);
+  renderQuiz('q-container-6', mcq6, sa6);
+};
+</script>
+
+</body>
+</html>
